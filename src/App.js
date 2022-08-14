@@ -45,7 +45,7 @@ const {activeMenu} = useStateContext()
     ">
     <  Navbar/>
     </div>
-    </div>
+    
 
     <div >
     <Routes>
@@ -74,6 +74,7 @@ const {activeMenu} = useStateContext()
       <Route path="/stacked" element={<Stacked />} />
       </Routes>
     </div>
+  </div>
   </div>
   </BrowserRouter>
   )
