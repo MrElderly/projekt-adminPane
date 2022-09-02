@@ -1,9 +1,10 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import {SiShopware} from 'react-icons/si'
-import {MdOutlineCancel} from 'react-icons/md'
-import {TooltipComponent} from '@syncfusion/ej2-react-popups'
-import {links} from '../data/dummy'
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { SiShopware } from 'react-icons/si';
+import { MdOutlineCancel } from 'react-icons/md';
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+
+import { links } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 
 
@@ -47,18 +48,20 @@ className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:inline-fle
     </p>
    {item.links.map(link => (
     <NavLink
-    to={`/&{link.name}`}
+    to={`/${link.name}`}
     key={link.name}
     onClick={handleCloseSideBar}
-    className={({isActive}) => (isActive ? activeLink : normalLink)}>
-    {link.icon}
-<span className="capitalize">{link.name}</span>
+    className={({ isActive }) => (isActive ? activeLink : normalLink)}
+    >
+      {link.icon}
+      <span className="capitalize ">{link.name}</span>
     </NavLink>
     ))}
   </div>
 ))}
 </div>
-</>)}
+</>
+)}
      </div>
   )
 }
