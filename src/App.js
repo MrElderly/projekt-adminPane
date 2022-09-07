@@ -12,16 +12,20 @@ import { useStateContext } from './contexts/ContextProvider'
   import './App.css'
 
 const App = () => {
-const {activeMenu} = useStateContext()
+const {activeMenu, themeSettings, setThemeSettings, currentColor, currentMode} = useStateContext()
   
   return (
+    <div className={currentMode === 'Dark' ? 'dark' : ''}>
   <BrowserRouter>
   <div className='flex relatibe dark:bg-main-dark-bg'>
    <div className='fixed right-4 bottom-4' style={{zIndex: '1000'}}>
   <TooltipComponent content='Settings' position='Top'>
     <button type='button' className='text-3xl p-3
-    border-2 border-main-dark-bg rounded-lg hover:bg-main-dark-bg hover:text-white
-     ' style={{background:'blue', borderRadius:'50%'}}>
+    border-2 border-main-dark-bg rounded-lg
+     hover:bg-main-dark-bg hover:text-white'
+     onClick={()=> setThemeSettings(true)}
+     style={{background:currentColor, borderRadius:'50%'}}
+    >
     <FiSettings className='text-3xl'/>
     </button>
     </TooltipComponent>
@@ -37,7 +41,10 @@ const {activeMenu} = useStateContext()
     </div>
   )}
   <div className={
-     `dark:bg-main-bg bg-main-bg min-h-screen w-full ${activeMenu ? 'md:ml-72 ' : 'flex-2'}`
+     `dark:bg-main-dark-bg bg-main-bg min-h-screen w-full 
+     ${activeMenu 
+      ? 'md:ml-72 ' 
+      : 'flex-2'}`
   }>
     <div className="fixed md:static
     bg-main-bg dark:bg-main-dark-bg 
@@ -48,6 +55,8 @@ const {activeMenu} = useStateContext()
     
 
     <div >
+  { themeSettings && <ThemeSettings/>}
+
     <Routes>
       <Route path="/" element={<Ecommerce />} />
       <Route path="/ecommerce" element={<Ecommerce />} />
@@ -77,6 +86,7 @@ const {activeMenu} = useStateContext()
   </div>
   </div>
   </BrowserRouter>
+  </div>
   )
 }
 

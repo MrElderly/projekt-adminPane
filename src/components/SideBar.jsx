@@ -9,7 +9,7 @@ import { useStateContext } from '../contexts/ContextProvider';
 
 
 const Sidebar = () => {
-  const {activeMenu, setActiveMenu, screenSize} = useStateContext();
+  const {activeMenu, setActiveMenu, screenSize, currentColor} = useStateContext();
 
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
   const handleCloseSideBar = () => {
@@ -51,6 +51,10 @@ className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:inline-fle
     to={`/${link.name}`}
     key={link.name}
     onClick={handleCloseSideBar}
+
+    style={({isActive}) => ({
+      backgroundColor: isActive ? currentColor : '',
+    })}
     className={({ isActive }) => (isActive ? activeLink : normalLink)}
     >
       {link.icon}
