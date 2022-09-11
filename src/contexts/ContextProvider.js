@@ -5,7 +5,7 @@ const StateContext = createContext();
 const initState = {
     chat: false,
     cart: false,
-    UserProfile: false,
+    userProfile: false,
     notification: false
 }
 
@@ -16,6 +16,7 @@ export const ContextProvider = ({ children }) => {
     const [currentColor, setCurrentColor]= useState('#03C9D7');
     const [currentMode, setCurrentMode] = useState('Light')
     const [themeSettings, setThemeSettings] = useState(false);
+    const [activeProfile, setActiveProfile] = useState(false);
 
     const setMode = (e) =>{
         setCurrentMode(e.target.value)
@@ -45,6 +46,14 @@ export const ContextProvider = ({ children }) => {
         })
     }
 
+    const handleCloseProfile = (clicked) => {
+        setIsClicked({
+            ...initState,
+            [clicked]: false
+           // [clicked]: !isClicked[clicked]
+        })
+    }
+
     return (
         <StateContext.Provider 
         value={{
@@ -55,7 +64,9 @@ export const ContextProvider = ({ children }) => {
             currentColor, setCurrentColor,
             currentMode, setCurrentMode,
             themeSettings, setThemeSettings,
-            setMode, setColor
+            setMode, setColor,
+            activeProfile, setActiveProfile,
+            handleCloseProfile
             }}>
             {children}
         </StateContext.Provider>
